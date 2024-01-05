@@ -27,6 +27,10 @@ function MainForm() {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
+  const handleSubmit = () => {
+    console.log(JSON.stringify(values, null, 3));
+  };
+
   return (
     <Box
       minH={"100vh"}
@@ -46,32 +50,34 @@ function MainForm() {
         alignItems={"center"}
         borderRadius={"10px"}
       >
-        {(() => {
-          switch (values.step) {
-            case 1:
-              return (
-                <UserDetails
-                  values={values}
-                  nextStep={nextStep}
-                  handleChange={handleChange}
-                />
-              );
-            case 2:
-              return (
-                <PersonalInfo
-                  values={values}
-                  prevStep={prevStep}
-                  nextStep={nextStep}
-                  handleChange={handleChange}
-                />
-              );
+        <form onSubmit={handleSubmit}>
+          {(() => {
+            switch (values.step) {
+              case 1:
+                return (
+                  <UserDetails
+                    values={values}
+                    nextStep={nextStep}
+                    handleChange={handleChange}
+                  />
+                );
+              case 2:
+                return (
+                  <PersonalInfo
+                    values={values}
+                    prevStep={prevStep}
+                    nextStep={nextStep}
+                    handleChange={handleChange}
+                  />
+                );
 
-            case 3:
-              return <FormDetails values={values} prevStep={prevStep} />;
-            default:
-              return null;
-          }
-        })()}
+              case 3:
+                return <FormDetails values={values} prevStep={prevStep} />;
+              default:
+                return null;
+            }
+          })()}
+        </form>
       </Box>
     </Box>
   );

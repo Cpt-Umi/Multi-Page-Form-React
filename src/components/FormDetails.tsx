@@ -43,9 +43,7 @@ function FormDetails({ values, prevStep }: Props) {
       </HStack>
       <HStack>
         <Button onClick={() => prevStep()}>Back</Button>
-        <Button onClick={() => console.log(JSON.stringify(values, null, 2))}>
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </HStack>
     </Box>
   );
